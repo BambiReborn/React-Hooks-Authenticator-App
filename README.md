@@ -1,73 +1,66 @@
-# React + TypeScript + Vite
+# Role-Based Dashboard App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A multi-page React + TypeScript app with authentication, protected routes, and role-based UI rendering.
 
-Currently, two official plugins are available:
+## Tech Stack
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- React 18
+- TypeScript
+- React Router v6
+- Vite
 
-## React Compiler
+## Features
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- Login system with three user roles (Admin, Editor, Viewer)
+- Protected routes — redirects unauthenticated users to login
+- Role-based dashboard — each role sees different content
+- Settings page restricted to Admin only
+- Persistent navbar with logout
 
-## Expanding the ESLint configuration
+## Project Structure
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```
+src/
+├── App.tsx
+├── AuthContext.tsx
+├── ProtectedRoute.tsx
+├── components/
+│   └── Navbar.tsx
+└── pages/
+    ├── LoginPage.tsx
+    ├── DashboardPage.tsx
+    ├── ProfilePage.tsx
+    └── SettingsPage.tsx
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## Getting Started
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+1. Clone the repo and install dependencies:
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+npm install
 ```
+
+2. Start the development server:
+
+```bash
+npm run dev
+```
+
+3. Open your browser at `http://localhost:5173`
+
+## User Roles
+
+| Role | Dashboard | Profile | Settings |
+|------|-----------|---------|----------|
+| Admin | Admin controls | Yes | Yes |
+| Editor | Content editor | Yes | No |
+| Viewer | Read-only reports | Yes | No |
+
+## How It Works
+
+- User selects a username and role on the login page
+- User data is stored in React Context and shared across all pages
+- `ProtectedRoute` checks if the user is logged in before allowing access
+- The dashboard renders a different panel depending on the user's role
+- Logging out clears the context and redirects to login
