@@ -1,4 +1,5 @@
-// @ts-ignore: suppress missing module/type declarations for react-router-dom
+import React from "react";
+// @ts-ignore: ignore missing react-router-dom module/types during build
 import { Navigate } from "react-router-dom";
 import { useAuth } from "./AuthContext";
 

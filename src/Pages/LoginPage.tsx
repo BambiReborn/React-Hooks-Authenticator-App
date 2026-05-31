@@ -1,10 +1,8 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
 import { useAuth } from "../AuthContext";
 
 export default function LoginPage() {
   const { login } = useAuth();
-  const navigate = useNavigate();
   const [username, setUsername] = useState<string>("");
   const [role, setRole] = useState<"Admin" | "Editor" | "Viewer">("Viewer");
   const [error, setError] = useState<string>("");
@@ -12,7 +10,7 @@ export default function LoginPage() {
   const handleLogin = () => {
     if (!username.trim()) { setError("Please enter a username."); return; }
     login(username.trim(), role);
-    navigate("/dashboard");
+    window.location.href = "/dashboard";
   };
 
   return (

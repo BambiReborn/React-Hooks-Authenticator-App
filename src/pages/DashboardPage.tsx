@@ -52,7 +52,7 @@ export default function DashboardPage() {
         <h1>Welcome, {user?.username}</h1>
         <p>Logged in as {user?.role}</p>
         <br />
-        {user?.role === "Admin"  && <AdminPanel />}
+        {user?.role === "Admin" && <AdminPanel />}
         {user?.role === "Editor" && <EditorPanel />}
         {user?.role === "Viewer" && <ViewerPanel />}
       </div>
