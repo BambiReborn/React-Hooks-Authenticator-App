@@ -1,10 +1,10 @@
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { AuthProvider } from "./AuthContext";
 import { ProtectedRoute } from "./ProtectedRoute";
-import LoginPage from "./Pages/LoginPage";
-import DashboardPage from "./Pages/DashboardPage";
-import ProfilePage from "./Pages/ProfilePage";
-import SettingsPage from "./Pages/SettingsPage";
+import LoginPage from "./pages/LoginPage";
+import DashboardPage from "./pages/DashboardPage";
+import ProfilePage from "./pages/ProfilePage";
+import SettingsPage from "./pages/SettingsPage";
 
 export default function App() {
   return (
